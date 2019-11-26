@@ -1,0 +1,32 @@
+{
+  "name": "thingiverse-server",
+  "version": "1.0.0",
+  "description": "server for thingiverse app",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adrivpp/Thingiverse.git"
+  },
+  "author": "Adriana Pérez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adrivpp/Thingiverse/issues"
+  },
+  "homepage": "https://github.com/adrivpp/Thingiverse#readme",
+  "dependencies": {
+    "apollo-datasource-rest": "^0.6.9",
+    "apollo-server": "^2.9.12",
+    "apollo-server-express": "^2.9.12",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "graphql": "^14.5.8"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.1"
+  }
+}
