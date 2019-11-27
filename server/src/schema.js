@@ -8,6 +8,10 @@ const typeDefs = gql`
         thing(id: ID!): Thing
     } 
 
+    type Mutation {
+        exchangeCode(code: String!): String
+    }
+
     type Thing {
         title: String!
     }

@@ -9,7 +9,18 @@ module.exports = {
                 allThings,
             };
         },
-        thing: (_, { id }, { dataSources }) =>
-            dataSources.launchAPI.getThingById({ thingId: id }),
+        thing: async (_, { id }, { dataSources }) => {
+            const thing = await dataSources.launchAPI.getThingById({ thingId: id });
+            return {
+                thing
+            }
+        }
     },
+
+    Mutation: {
+        exchangeCode: async (_, { code }, { dataSources }) => {
+            const token = await dataSources.authAPI.exchangeCode({ code });
+            return token;
+        }
+    }
 }

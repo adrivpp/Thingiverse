@@ -9,9 +9,8 @@ import Login from './login';
 export default function Pages() {
     return (
         <Switch>
-            <Route path='/auth' component={() => { window.location = process.env.REACT_APP_AUTH_URL; return null }} />
-            <Route path='/login' component={Login} />
-            <PrivateRoute path='/' component={ThingsList} />
+            <Route path='/login' exact component={Login} />
+            <PrivateRoute path='/' exact component={ThingsList} />
         </Switch>
     );
 }

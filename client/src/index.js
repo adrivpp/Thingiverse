@@ -13,15 +13,15 @@ import { resolvers, typeDefs } from './resolvers';
 
 const cache = new InMemoryCache();
 const link = new HttpLink({
-    uri: 'http://localhost:4000/',
+    uri: 'http://localhost:4000/graphql',
     headers: {
-        authorization: localStorage.getItem('item'),
+        Authorization: localStorage.getItem('token'),
     }
 });
 
 cache.writeData({
     data: {
-        isLoggedIn: !!localStorage.getItem('item'),
+        isLoggedIn: !!localStorage.getItem('token'),
     }
 })
 

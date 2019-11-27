@@ -11,13 +11,13 @@ const IS_LOGGED_IN = gql`
 `;
 
 function PrivateRoute({ component: Component, isLoggedin, ...rest }) {
-    const { data } = useQuery(IS_LOGGED_IN);
-    return data.isLoggedIn
-        ? <Route
-            {...rest}
-            render={() => <Component />}
-        />
-        : <Redirect to='/auth' />
+  const { data } = useQuery(IS_LOGGED_IN);
+  return data.isLoggedIn
+    ? <Route
+      {...rest}
+      render={() => <Component />}
+    />
+    : <Redirect to='/login' />
 }
 
 export default PrivateRoute;

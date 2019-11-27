@@ -9,6 +9,7 @@ const cors = require('cors');
 const typeDefs = require('./schema');
 const resolvers = require('./resolvers');
 const ThingAPI = require('./datasources/thing');
+const AuthAPI = require('./datasources/auth');
 
 const app = express();
 
@@ -23,7 +24,8 @@ const server = new ApolloServer({
     typeDefs,
     resolvers,
     dataSources: () => ({
-        thingAPI: new ThingAPI()
+        thingAPI: new ThingAPI(),
+        authAPI: new AuthAPI()
     })
 });
 
