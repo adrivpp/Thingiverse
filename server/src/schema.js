@@ -4,8 +4,8 @@ const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
     type Query {
-        things: [Thing]!
-        thing(id: ID!): Thing
+        things(category: String!): [Thing]!
+        thingById(thingId: ID!): Thing
     } 
 
     type Mutation {
@@ -13,7 +13,16 @@ const typeDefs = gql`
     }
 
     type Thing {
-        title: String!
+        id: ID!
+        name: String!
+        url: String!
+        image: String!
+        creator: Creator!
+    }
+
+    type Creator {
+        firstName: String!
+        image: String!
     }
 `;
 

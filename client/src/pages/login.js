@@ -54,7 +54,7 @@ function CallMutation({ code }) {
         {
             onCompleted({ exchangeCode }) {
                 const { access_token } = queryString.parse(exchangeCode);
-                localStorage.setItem('token', `Bearer ${access_token}`);
+                localStorage.setItem('token', access_token);
                 client.writeData({ data: { isLoggedIn: true } });
             }
         }

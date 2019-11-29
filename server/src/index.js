@@ -23,6 +23,10 @@ app.use(
 const server = new ApolloServer({
     typeDefs,
     resolvers,
+    context: ({ req }) => {
+        const token = req.headers.authorization || '';
+        return { token };
+    },
     dataSources: () => ({
         thingAPI: new ThingAPI(),
         authAPI: new AuthAPI()

@@ -2,18 +2,14 @@
 
 module.exports = {
     Query: {
-        things: async (_, __, { dataSources }) => {
-            const allThings = await dataSources.thingAPI.getAllThings();
+        things: async (_, { category }, { dataSources, token }) => {
+            const allThings = await dataSources.thingAPI.getAllThings({ token, category });
             allThings.reverse();
-            return {
-                allThings,
-            };
+            return allThings;
         },
-        thing: async (_, { id }, { dataSources }) => {
-            const thing = await dataSources.launchAPI.getThingById({ thingId: id });
-            return {
-                thing
-            }
+        thingById: async (_, { thingId }, { dataSources, token }) => {
+            const thing = await dataSources.thingAPI.getThingById({ thingId, token });
+            return thing;
         }
     },
 
