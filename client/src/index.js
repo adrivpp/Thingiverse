@@ -13,7 +13,7 @@ import { resolvers, typeDefs } from './resolvers';
 
 const cache = new InMemoryCache();
 const link = new HttpLink({
-    uri: 'http://localhost:4000/graphql',
+    uri: process.env.REACT_APP_SERVER_URL,
     headers: {
         Authorization: localStorage.getItem('token'),
     }

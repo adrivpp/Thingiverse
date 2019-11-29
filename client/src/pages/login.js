@@ -1,26 +1,23 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { useApolloClient } from '@apollo/react-hooks';
-import { Mutation } from 'react-apollo';
-import gql from 'graphql-tag';
+import { useMutation } from 'react-apollo';
 import queryString from 'query-string';
 
+import { EXCHANGE_CODE } from '../mutations';
 
-const EXCHANGE_CODE = gql`
-  mutation exchangeAuthCode($code: String!) {
-    exchangeCode(code: $code)
-  }
-`;
 
-export default class login extends Component {
+class Login extends Component {
+
     state = {
         code: null
     }
 
     componentDidMount() {
         const { history } = this.props;
-        if (history.location.search) {
-            const code = queryString.parse(history.location.search).code;
+        const { code } = this.state;
+        if (history.location.search && !code) {
+            const { code } = queryString.parse(history.location.search);
             this.setState({ code });
         }
     }
@@ -45,33 +42,27 @@ export default class login extends Component {
                 )
             default:
                 return (
-                    <Mutation mutation={EXCHANGE_CODE}>
-                        {(exchangeCode, { data, loading, error }) => {
-                            if (error) return <div>error</div>
-                            if (loading) return <div>loading</div>
-                            const token = (data && data.exchangeCode.token) || null;
-                            return (
-                                <CallMutation exchangeCode={exchangeCode} code={code}>
-                                    <h1>ya esta</h1>
-                                </CallMutation>
-                            )
-                        }}
-                    </Mutation>
+                    <CallMutation code={code} />
                 )
         }
     }
 }
 
-class CallMutation extends Component {
-
-    async componentDidMount() {
-        const { code, exchangeCode } = this.props
-        await exchangeCode({ variables: { code } });
-    }
-
-    render() {
-        return (
-            { ...this.props.children }
-        )
-    }
+function CallMutation({ code }) {
+    const client = useApolloClient();
+    const [exchangeCode, { loading }] = useMutation(EXCHANGE_CODE,
+        {
+            onCompleted({ exchangeCode }) {
+                const { access_token } = queryString.parse(exchangeCode);
+                localStorage.setItem('token', `Bearer ${access_token}`);
+                client.writeData({ data: { isLoggedIn: true } });
+            }
+        }
+    );
+    if (loading) return <p>loading</p>
+    return (
+        exchangeCode({ variables: { code } })
+    )
 }
+
+export default withRouter(Login);
