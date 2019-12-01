@@ -4,8 +4,8 @@ import { useQuery } from '@apollo/react-hooks';
 
 import { GET_THING_BY_ID } from '../../queries';
 import ThingHeader from '../../components/thing-header/thing-header';
-import { DefaultImage, Row, ThingAnalytics } from './styles';
-import AnalyticItem from '../../components/analityc-item/analityc-item';
+import { DefaultImage, Row, SmallContainer, DetailsContainer, Image } from './styles';
+import AnalyticItem from '../../components/analityc-item';
 
 function ThingDetails() {
     const { id } = useParams();
@@ -22,11 +22,22 @@ function ThingDetails() {
                     <ThingHeader thing={data.thingById} />
                     <Row>
                         <DefaultImage src={data.thingById.defaultImage} />
-                        <ThingAnalytics>
-                            <AnalyticItem icon={null} title={'views'} count={data.thingById.viewCount} />
-                        </ThingAnalytics>
+                        <SmallContainer>
+                            <AnalyticItem title={'Views'} count={data.thingById.viewCount} />
+                            <AnalyticItem title={'Likes'} count={data.thingById.likes} />
+                            <AnalyticItem title={'Downloads'} count={data.thingById.downloadCount} />
+                        </SmallContainer>
                     </Row>
-                    <div dangerouslySetInnerHTML={{ __html: data.thingById.details }} />
+                    <Row>
+                        <SmallContainer>
+                            {
+                                data.thingById.images.map(image => {
+                                    return <Image src={image.url} />
+                                })
+                            }
+                        </SmallContainer>
+                        <DetailsContainer dangerouslySetInnerHTML={{ __html: data.thingById.details }} />
+                    </Row>
                 </>
             }
         </>

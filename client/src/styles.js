@@ -36,6 +36,8 @@ export default () => injectGlobal({
   h1: {
     fontSize: 30,
     lineHeight: 1,
+    marginBottom: '0.5em',
+    marginTop: '0.5em'
   },
   h2: {
     fontSize: 26,
@@ -44,6 +46,11 @@ export default () => injectGlobal({
     fontSize: 18,
   },
   p: {
-    margin: 0
+    margin: 0,
+    lineHeight: '1.5em',
+    textAlign: 'justify'
+  },
+  '.detail-image img': {
+    width: '100%'
   }
 });

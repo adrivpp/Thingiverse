@@ -9,7 +9,7 @@ export default function ThingHeader({ thing }) {
         <Header>
             <CreatorImage src={creator.image} alt={creator.name} />
             <Column>
-                <h3>{name}</h3>
+                <h2>{name}</h2>
                 <p>by <CreatorName>{creator.firstName}</CreatorName> on {moment(added, 'YYYYMMDD').format('LL')}</p>
             </Column>
         </Header>
