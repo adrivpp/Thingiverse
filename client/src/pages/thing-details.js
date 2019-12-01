@@ -1,14 +1,14 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 
 import { GET_THING_BY_ID } from '../queries';
 import { ThingCard } from '../components';
 
-function ThingDetails({ match }) {
-    const thingId = match.params.id;
+function ThingDetails() {
+    const { id } = useParams();
     const { data, loading, error } = useQuery(GET_THING_BY_ID, {
-        variables: { thingId }
+        variables: { thingId: id }
     })
 
     if (loading) return <p>loading</p>;
@@ -22,4 +22,4 @@ function ThingDetails({ match }) {
     )
 }
 
-export default withRouter(ThingDetails);
+export default ThingDetails;

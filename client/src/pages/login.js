@@ -10,14 +10,14 @@ import { EXCHANGE_CODE } from '../mutations';
 class Login extends Component {
 
     state = {
-        code: null
+        code: null,
     }
 
     componentDidMount() {
-        const { history } = this.props;
+        const { location } = this.props;
         const { code } = this.state;
-        if (history.location.search && !code) {
-            const { code } = queryString.parse(history.location.search);
+        if (location.search && !code) {
+            const { code } = queryString.parse(location.search);
             this.setState({ code });
         }
     }
@@ -25,7 +25,7 @@ class Login extends Component {
     handleRedirect = () => {
         window.open(
             process.env.REACT_APP_AUTH_URL, '_self'
-        );
+        )
     }
 
     render() {

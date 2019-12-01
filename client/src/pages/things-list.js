@@ -1,14 +1,15 @@
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { withRouter } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import styled from 'react-emotion';
 
 import { GET_THINGS } from '../queries';
 import { ThingCard } from '../components';
 
-function ThingsList({ history }) {
-    const category = history.location.pathname.replace(/\//g, '');
+function ThingsList() {
+    const location = useLocation();
+    const category = location.pathname.replace(/\//g, '');
     const { data, loading, error } = useQuery(GET_THINGS, {
         variables: { category }
     })
@@ -36,4 +37,4 @@ const ThingsContainer = styled('div')({
     flexWrap: 'wrap',
 });
 
-export default withRouter(ThingsList);
+export default ThingsList;
