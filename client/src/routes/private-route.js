@@ -3,7 +3,7 @@ import { Route, Redirect } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 import { IS_LOGGED_IN } from '../clientQueries'
 import { NavBar } from '../components';
-import PageContainer from '../components/page-container';
+import { PageContainer } from '../components';
 
 function PrivateRoute({ component: Component, isLoggedIn, ...rest }) {
   const { data } = useQuery(IS_LOGGED_IN);

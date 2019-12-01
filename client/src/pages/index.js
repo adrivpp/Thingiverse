@@ -5,7 +5,7 @@ import PrivateRoute from '../routes/private-route';
 import AnonRoute from '../routes/anon-route';
 import ThingsList from './things-list';
 import Login from './login';
-import ThingDetails from './thing-details';
+import ThingDetails from './thing-details/thing-details';
 
 export default function Pages() {
     return (

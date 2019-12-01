@@ -1,20 +1,7 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 
 import styled from 'react-emotion';
-import { colors, unit } from '../styles';
-
-export default function NavBar({ history }) {
-    return (
-        <NavContainer>
-            <InnerNav>
-                <StyledLink to='/popular'>Popular</StyledLink>
-                <StyledLink to='/featured'>Featured</StyledLink>
-                <StyledLink to='/newest'>Newest</StyledLink>
-            </InnerNav>
-        </NavContainer>
-    );
-}
+import { colors, unit } from '../../styles';
 
 const NavContainer = styled('nav')({
     backgroundColor: colors.accent,
@@ -37,3 +24,5 @@ const StyledLink = styled(Link)({
     textDecoration: 'none',
     color: 'white'
 });
+
+export { StyledLink, InnerNav, NavContainer }; 

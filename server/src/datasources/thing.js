@@ -2,7 +2,7 @@
 
 require('dotenv').config();
 const { RESTDataSource } = require('apollo-datasource-rest');
-const thingReducer = require('../utils/thingReducer');
+const { thingReducer, thingDetailsReducer, imageReducer } = require('../utils/reducers');
 
 class ThingAPI extends RESTDataSource {
     constructor() {
@@ -27,7 +27,20 @@ class ThingAPI extends RESTDataSource {
                 Authorization: `Bearer ${token}`
             }
         });
-        return thingReducer(thing);
+        const images = await this.getImagesForThing({ thingId, token });
+        thing.images = images;
+        return thingDetailsReducer(thing);
+    }
+
+    async getImagesForThing({ thingId, token }) {
+        const images = await this.get(`things/${thingId}/images`, undefined, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        return Array.isArray(images)
+            ? images.map(image => imageReducer(image))
+            : [];
     }
 }
 

@@ -18,11 +18,23 @@ const typeDefs = gql`
         url: String!
         image: String!
         creator: Creator!
+        collectCount: Int
+        likes: Int!
+        added: String!
+        defaultImage: String!
+        details: String!
+        downloadCount: Int!
+        viewCount: Int!
+        images: [Image]!
     }
 
     type Creator {
         firstName: String!
         image: String!
+    }
+
+    type Image {
+        url: String!
     }
 `;
 

@@ -2,10 +2,9 @@ import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { useLocation } from 'react-router-dom';
 
-import styled from 'react-emotion';
-
 import { GET_THINGS } from '../queries';
 import { ThingCard } from '../components';
+import { ThingsContainer } from '../components/containers/styles';
 
 function ThingsList() {
     const location = useLocation();
@@ -30,11 +29,5 @@ function ThingsList() {
         </>
     )
 }
-
-const ThingsContainer = styled('div')({
-    display: 'flex',
-    justifyContent: 'space-between',
-    flexWrap: 'wrap',
-});
 
 export default ThingsList;
