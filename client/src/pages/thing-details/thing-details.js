@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/react-hooks';
 
 import { GET_THING_BY_ID } from '../../queries';
 import ThingHeader from '../../components/thing-header/thing-header';
-import { DefaultImage, Row, SmallContainer, DetailsContainer, Image } from './styles';
+import { DefaultImage, Row, SmallContainer, DetailsContainer, Image, ImagesContainer } from './styles';
 import AnalyticItem from '../../components/analityc-item';
 import Loading from '../../components/loading/loading';
 
@@ -30,13 +30,13 @@ function ThingDetails() {
                         </SmallContainer>
                     </Row>
                     <Row>
-                        <SmallContainer>
+                        <ImagesContainer>
                             {
-                                data.thingById.images.map(image => {
-                                    return <Image src={image.url} />
+                                data.thingById.images.map((image, index) => {
+                                    return <Image key={`image-${index}`} src={image.url} alt={data.thingById.name}/>
                                 })
                             }
-                        </SmallContainer>
+                        </ImagesContainer>
                         <DetailsContainer dangerouslySetInnerHTML={{ __html: data.thingById.details }} />
                     </Row>
                 </>

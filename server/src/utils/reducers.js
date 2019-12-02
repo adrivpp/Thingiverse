@@ -10,7 +10,6 @@ const thingReducer = (thing) => {
             id: creator.id,
             firstName: creator.first_name,
             image: creator.thumbnail,
-
         }
     };
 }

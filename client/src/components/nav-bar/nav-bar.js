@@ -3,10 +3,10 @@ import { useParams } from 'react-router-dom';
 
 import { StyledLink, InnerNav, NavContainer } from './styles';
 
-
 export default function NavBar() {
-    const {category} = useParams();
-
+    const { category } = useParams();
+    
+    
     return (
         <NavContainer>
             <InnerNav>
