@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom';
 import { GET_THINGS } from '../queries';
 import { ThingCard } from '../components';
 import { ThingsContainer } from '../components/containers/styles';
+import Loading from '../components/loading/loading';
 
 function ThingsList() {
     const location = useLocation();
@@ -13,7 +14,7 @@ function ThingsList() {
         variables: { category }
     })
 
-    if (loading) return <p>loading</p>;
+    if (loading) return <Loading/>
     if (error) return <p>error</p>;
     return (
         <>

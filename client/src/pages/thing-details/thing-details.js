@@ -6,6 +6,7 @@ import { GET_THING_BY_ID } from '../../queries';
 import ThingHeader from '../../components/thing-header/thing-header';
 import { DefaultImage, Row, SmallContainer, DetailsContainer, Image } from './styles';
 import AnalyticItem from '../../components/analityc-item';
+import Loading from '../../components/loading/loading';
 
 function ThingDetails() {
     const { id } = useParams();
@@ -13,7 +14,7 @@ function ThingDetails() {
         variables: { thingId: id }
     })
 
-    if (loading) return <p>loading</p>;
+    if (loading) return <Loading/>;
     if (error) return <p>error</p>;
     return (
         <>

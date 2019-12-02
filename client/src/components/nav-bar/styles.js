@@ -20,9 +20,9 @@ const InnerNav = styled('div')({
     maxWidth: '60%'
 });
 
-const StyledLink = styled(Link)({
+const StyledLink = styled(Link)(props => ({
     textDecoration: 'none',
-    color: 'white'
-});
+    color: props.isSelected ? colors.primary : 'white'
+}));
 
 export { StyledLink, InnerNav, NavContainer }; 

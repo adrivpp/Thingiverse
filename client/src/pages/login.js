@@ -5,12 +5,7 @@ import { useMutation } from 'react-apollo';
 import queryString from 'query-string';
 
 import { EXCHANGE_CODE } from '../mutations';
-
-const handleRedirect = () => {
-    window.open(
-        process.env.REACT_APP_AUTH_URL, '_self'
-    )
-}
+import GetStarted from '../components/get-started/get-started';
 
 export default function Login() {
     const [code, setCode] = useState(null);
@@ -40,10 +35,6 @@ export default function Login() {
     if (error) return <p>error</p>
 
     return (
-        <div>
-            <h2>Welcome to thingy!</h2>
-            <p>Give us acces to your thingiverse account to continue</p>
-            <button onClick={handleRedirect}>Let's do it!</button>
-        </div>
+        <GetStarted />
     )
 }
