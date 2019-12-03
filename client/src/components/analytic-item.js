@@ -5,8 +5,8 @@ export default function AnalyticItem({ count, title }) {
     return (
         <>
             <Row>
-                <div>{title}</div>
-                <div>{count}</div>
+                <p>{title}</p>
+                <p>{count}</p>
             </Row>
             <hr />
         </>

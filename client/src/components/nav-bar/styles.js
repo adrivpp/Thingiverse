@@ -1,6 +1,4 @@
-import { Link } from 'react-router-dom';
-
-import styled from 'react-emotion';
+import styled from '@emotion/styled';
 import { colors, unit } from '../../styles';
 
 const NavContainer = styled('nav')({
@@ -14,13 +12,12 @@ const NavContainer = styled('nav')({
 const InnerNav = styled('div')({
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'space-evenly',
     padding: unit * 4,
     margin: '0 auto',
-    maxWidth: '60%'
 });
 
-const StyledLink = styled(Link)(({isSelected}) => ({
+const StyledLink = styled('a')(({isSelected}) => ({
     textDecoration: 'none',
     color: isSelected ? colors.primary : 'white'
 }));

@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 import { GET_THINGS } from '../queries';
 import { ThingCard } from '../components';
 import { ThingsContainer } from '../components/containers/styles';
-import Loading from '../components/loading/loading';
+import { Loading, Error } from '../components';
 
 function ThingsList() {
     const location = useLocation();
@@ -15,7 +15,7 @@ function ThingsList() {
     })
 
     if (loading) return <Loading/>
-    if (error) return <p>error</p>;
+    if (error) return <Error message={error.message}/>
     return (
         <>
             <ThingsContainer>

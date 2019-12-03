@@ -1,4 +1,4 @@
-import styled from 'react-emotion';
+import styled from '@emotion/styled';
 import { colors, unit } from '../../styles';
 
 const Header = styled('div')({

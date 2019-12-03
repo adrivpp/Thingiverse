@@ -3,10 +3,8 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 
 import { GET_THING_BY_ID } from '../../queries';
-import ThingHeader from '../../components/thing-header/thing-header';
-import { DefaultImage, Row, SmallContainer, DetailsContainer, Image, ImagesContainer } from './styles';
-import AnalyticItem from '../../components/analityc-item';
-import Loading from '../../components/loading/loading';
+import { DefaultImage, Row, SmallContainer, DetailsContainer, Image, ImagesContainer, DefaultImageContainer } from './styles';
+import { AnalyticItem, Loading, ThingHeader, Error } from '../../components';
 
 function ThingDetails() {
     const { id } = useParams();
@@ -14,15 +12,17 @@ function ThingDetails() {
         variables: { thingId: id }
     })
 
-    if (loading) return <Loading/>;
-    if (error) return <p>error</p>;
+    if (loading) return <Loading/>
+    if (error) return <Error message={error.message}/>
     return (
         <>
             {data && data.thingById &&
                 <>
                     <ThingHeader thing={data.thingById} />
                     <Row>
-                        <DefaultImage src={data.thingById.defaultImage} />
+                        <DefaultImageContainer>
+                            <DefaultImage src={data.thingById.defaultImage} />
+                        </DefaultImageContainer>
                         <SmallContainer>
                             <AnalyticItem title={'Views'} count={data.thingById.viewCount} />
                             <AnalyticItem title={'Likes'} count={data.thingById.likes} />

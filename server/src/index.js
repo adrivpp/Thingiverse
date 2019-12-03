@@ -3,13 +3,14 @@
 require('dotenv').config();
 
 const express = require('express');
-const { ApolloServer } = require('apollo-server-express');
 const cors = require('cors');
 
+const { ApolloServer, } = require('apollo-server-express');
 const typeDefs = require('./schema');
 const resolvers = require('./resolvers');
 const ThingAPI = require('./datasources/thing');
 const AuthAPI = require('./datasources/auth');
+const handleError = require('./handle-error');
 
 const app = express();
 
@@ -23,9 +24,16 @@ app.use(
 const server = new ApolloServer({
     typeDefs,
     resolvers,
+    formatError: (error) => {
+        const exeption = handleError(error);
+        throw exeption;
+    },
     context: ({ req }) => {
         const token = req.headers.authorization || '';
-        return { token };
+        const headers = {
+            Authorization: `Bearer ${token}`
+        }
+        return { headers };
     },
     dataSources: () => ({
         thingAPI: new ThingAPI(),

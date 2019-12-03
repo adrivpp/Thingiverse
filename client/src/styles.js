@@ -1,4 +1,4 @@
-import { injectGlobal } from 'react-emotion';
+import { injectGlobal } from 'emotion';
 
 export const unit = 8;
 export const colors = {
@@ -48,7 +48,12 @@ export default () => injectGlobal({
   p: {
     margin: 0,
     lineHeight: '1.5em',
-    textAlign: 'justify'
+    textAlign: 'justify',
+  },
+  a: {
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+    textOverflow: 'elipsis',
   },
   '.detail-image img': {
     width: '100%'

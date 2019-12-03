@@ -10,33 +10,27 @@ class ThingAPI extends RESTDataSource {
         this.baseURL = process.env.API_URL;
     }
 
-    async getAllThings({ token, category }) {
+    async getAllThings({ headers, category }) {
         const response = await this.get(`${category}`, undefined, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
+            headers
         });
         return Array.isArray(response)
             ? response.map(thing => thingReducer(thing))
             : [];
     }
 
-    async getThingById({ thingId, token }) {
+    async getThingById({ thingId, headers }) {
         const thing = await this.get(`things/${thingId}`, undefined, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
+            headers
         });
-        const images = await this.getImagesForThing({ thingId, token });
+        const images = await this.getImagesForThing({ thingId, headers });
         thing.images = images;
         return thingDetailsReducer(thing);
     }
 
-    async getImagesForThing({ thingId, token }) {
+    async getImagesForThing({ thingId, headers }) {
         const images = await this.get(`things/${thingId}/images`, undefined, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
+            headers
         })
         return Array.isArray(images)
             ? images.map(image => imageReducer(image))

@@ -6,13 +6,12 @@ import { StyledLink, InnerNav, NavContainer } from './styles';
 export default function NavBar() {
     const { category } = useParams();
     
-    
     return (
         <NavContainer>
             <InnerNav>
-                <StyledLink isSelected={category === 'popular'} to='/popular'>Popular</StyledLink>
-                <StyledLink isSelected={category === 'featured'} to='/featured'>Featured</StyledLink>
-                <StyledLink isSelected={category === 'newest'} to='/newest'>Newest</StyledLink>
+                <StyledLink isSelected={category === 'popular'} href='/popular'>Popular</StyledLink>
+                <StyledLink isSelected={category === 'featured'} href='/featured'>Featured</StyledLink>
+                <StyledLink isSelected={category === 'newest'} href='/newest'>Newest</StyledLink>
             </InnerNav>
         </NavContainer>
     );
